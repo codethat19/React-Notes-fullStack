@@ -16,7 +16,7 @@ const App = () => {
   // const [notes, setNotes] = useState(JSON.parse(localStorage.getItem('notes')) || []);
   // console.log(notes);
   const viewNotes = async () => {
-    console.log("View notes called")
+    // console.log("View notes called")
     // const flag = JSON.stringify( setFlag );
     //console.log();
     //setNoteFlag();
@@ -32,7 +32,7 @@ const App = () => {
   };
   useEffect( () => {
     viewNotes();
-    console.log(notes);
+    // console.log(notes);
   }, []);
   // useEffect(() => {
   //   localStorage.setItem('notes', JSON.stringify(notes))

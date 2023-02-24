@@ -16,7 +16,7 @@ const NoteItem = ({note, colorId}) => {
     <Link to={`/edit-note/${note._id}`} style={backgroundColour}className="note">
         <h3>{note.title.length > 70 ? (note.title.substr(0, 70)) + "..." : note.title}</h3>
         <h5>{note.details.length > 120 ? (note.details.substr(0, 120)) + "..." : note.details}</h5>
-        <p><HiOutlineClock className='clock'/>{note.updatedAt}</p>
+        <p><HiOutlineClock className='clock'/>{note.updatedAt.substr(0, 10)}</p>
     </Link>
   )
 }

@@ -14,7 +14,7 @@ mongoose.set("strictQuery", false);
 mongoose.connect("mongodb+srv://" + process.env.DB_USERNAME + ":" + process.env.DB_PASSWORD + "@cluster0.kxmtd.mongodb.net/" + process.env.DB_NAME + "?retryWrites=true&w=majority", {
   useNewUrlParser: true
 });
-mongoose.connection.on('connected', () => console.log('Connected'));
+mongoose.connection.on('connected', () => console.log('DB Connected'));
 
 const noteSchema = new mongoose.Schema(
     {
@@ -55,13 +55,9 @@ function CreateNote(newNote) {
         colorId: colorId
     });
     const result = note.save();
-    // res.redirect('/');
 }
 
-// app.get('/', (req, res) => {
-//     res.redirect('/view');
-// })
-
+//Routes
 app.route('/')
 .get( (req, res) => {
     const notes  = Note.find({flag: 1}, (err, foundNotes) => {
@@ -96,43 +92,34 @@ app.get('/archived', (req, res) => {
 });
 
 app.post(('/update/*'),  (req, res) => {
-    // console.log(req.body.newNote);
-    // console.log(req.query.id);
+
     const updatedNote = {
         title: req.body.newNote.title,
         details: req.body.newNote.details
     }
-    // console.log(updatedNote);
+
     let result = Note.findOneAndUpdate({_id: req.query.id}, {"title": req.body.newNote.title, "details": req.body.newNote.details}, function(err, res) {
         if (err) res.send(err);
         console.log('Succesfully saved.');
     });
-    // console.log(result)
     res.redirect('/');
 })
 app.post(("/deleteNote/*"), (req, res) => {
-    // const note = JSON.parse((Object.keys(req.body)));
-    // const id = note._id;
+
     const id = req.query.id;
     console.log("deleteNote hit");
-    // const id = (Object.keys(req.body));
-    //console.log(id);
+
     Note.findByIdAndUpdate({_id: req.query.id}, {"flag": 0}, (err) => {
         if (err) {
             console.log(err);
-        } else {
-            // console.log("Successfully Deleted");
-        }
+        } 
     })
-    // mongoose.connection.close();
     res.redirect('/');
 });
 
 app.post('/create-note', (req, res) => {
 
-    // const note = JSON.parse((Object.keys(req.body)));
     const note = req.body;
-    console.log(note);
 
     const noteTitle = note.title;
     const noteDetail = note.details;
@@ -151,35 +138,25 @@ app.post('/create-note', (req, res) => {
 
 
 app.post(("/archive/*"), (req, res) => {
-    // const note = JSON.parse((Object.keys(req.body)));
-    // const id = note._id;
-    // const id = (Object.keys(req.body));
+
     const id = req.query.id;
-    //console.log(id);
+
     Note.findByIdAndUpdate(id, {flag: 2}, (err) => {
         if (err) {
             console.log(err);
-        } else {
-            // console.log("Successfully Deleted");
-        }
+        } 
     })
-    // // mongoose.connection.close();
     res.redirect('/');
 });
 
 app.post(("/unarchive/*"), (req, res) => {
-    // const note = JSON.parse((Object.keys(req.body)));
-    // const id = note._id;
+
     const id = req.query.id;
-    //console.log(id);
     Note.findByIdAndUpdate(id, {flag: 1}, (err) => {
         if (err) {
             console.log(err);
-        } else {
-            // console.log("Successfully Deleted");
-        }
+        } 
     })
-    // mongoose.connection.close();
     res.redirect('/');
 });
 
@@ -194,19 +171,6 @@ app.post(("/permaDeleteNote/*"), (req, res) => {
     })
     res.redirect('/');
 });
-
-// app.post(("/recover/*"), (req, res) => {
-//     const id = req.query.id;
-//     Note.findByIdAndUpdate(id, {flag: 1}, (err) => {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             // console.log("Successfully Deleted");
-//         }
-//     })
-//     // mongoose.connection.close();
-//     res.redirect('/');
-// });
 
 app.post('/*', (req, res) => {
     console.log("Wild card POST endpoint hit");

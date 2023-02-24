@@ -2,17 +2,17 @@ import {React, useState} from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import {IoIosArrowBack} from 'react-icons/io';
 import {RiDeleteBin6Line, RiInboxArchiveLine, RiInboxUnarchiveFill} from 'react-icons/ri';
-import useCreateDate from '../components/useCreateDate';
+// import useCreateDate from '../components/useCreateDate';
 import api from "./../components/axios";
 import {FaTrashRestoreAlt} from 'react-icons/fa';
 
 const EditNote = ({notes, setNotes, viewNotes}) => {
 
+  //Extracting id from parameter and finding the matching note
   const {id} = useParams();
-  console.log(id);
-
   const note = notes.find((item) => item._id === id);
-  console.log(note.flag);
+
+  //Rendering ArchiveButton, DeleteButton and RecoverDeleteButton depending on the page we are in
   let ArchiveButton = <></>;
   let DeleteButton = <></>;
   let RecoverDeleteButton = <></>;
@@ -30,34 +30,11 @@ const EditNote = ({notes, setNotes, viewNotes}) => {
     DeleteButton = <button onClick={handlePermaDelete} className="btn danger"><RiDeleteBin6Line /></button>;
   }
 
+  //Using useState to manage Note's fields
   const [title, setTitle] = useState(note.title);
   const [details, setDetails] = useState(note.details);
   const navigate = useNavigate();
-  const date = useCreateDate();
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   // if (title && details) {
-  //   //   note.title = title;
-  //   //   note.details = details;
-  //   //   note.date = date;
-
-  //   //   navigate('/');
-  //   // }
-  //   //Code from video
-  //   // if (title && details) {
-  //     const newNote = {...note, title, details};
-
-  //     const newNotes = notes.map(item => {
-  //       if (item._id === id) {
-  //         item = newNote;
-  //       }
-  //       return item;
-  //     })
-  //     setNotes(newNotes);
-  //     navigate('/');
-  //   }
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -77,11 +54,7 @@ const EditNote = ({notes, setNotes, viewNotes}) => {
     } 
     navigate('/');
   }
-  // const handleDelete = () => {
-  //   const newNotes = notes.filter(item => item.id !== id);
-  //   setNotes(newNotes);
-  //   navigate('/');
-  // }
+
   async function handleDelete() {
     await api.post('/deleteNote/', null, {params: {id: id}})
       .then(response => {
@@ -138,11 +111,9 @@ const EditNote = ({notes, setNotes, viewNotes}) => {
       <header className="create-note__header">
         <Link to="/" className='btn'><IoIosArrowBack /></Link>
         <button onClick={handleSubmit} className="btn lg primary">Save</button>
-        {/* {(note.flag === 1) ? <button onClick={handleArchive} className="btn"><RiInboxArchiveLine /></button> : <button onClick={handleUnArchive} className="btn"><RiInboxUnarchiveFill /></button>} */}
         {ArchiveButton}
         {RecoverDeleteButton}
         {DeleteButton}
-        {/* <button onClick={handleDelete} className="btn danger"><RiDeleteBin6Line /></button> */}
       </header>
 
       <form className="create-note__form">

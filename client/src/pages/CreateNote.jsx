@@ -11,25 +11,6 @@ const CreateNote = ({setNotes, viewNotes}) => {
   const date = useCreateDate();
   const navigate = useNavigate();
   
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   if (title && details) {
-  //     const colorId = Math.floor(Math.random() * 10);
-      
-  //     const note = { id: uuid(), title, details, date, colorId }
-
-  //     //Add the new note to the Notes Array
-  //     setNotes(prevNotes => [note, ...prevNotes]);
-  //     //console.log(note);
-
-  //     //Redirect to home
-  //     navigate('/');
-  //   }
-
-    
-  // }
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(title && details) {
@@ -46,7 +27,6 @@ const CreateNote = ({setNotes, viewNotes}) => {
           console.log(error);
         });
     } else {
-      // api.get('/');
       navigate('/');
     }
   }
