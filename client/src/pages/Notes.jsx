@@ -21,10 +21,12 @@ const Notes = ({notes, setNotes, viewNotes}) => {
     //     });
     // }
 
-    useEffect( () => {
+
+    if (!notes.length) {
         let fetchedNotes = viewNotes();
         setNotes(fetchedNotes);
-    },[]);
+    }
+
 
 //   console.log(notes.length);
   const [showSearch, setShowSearch] = useState(false);
