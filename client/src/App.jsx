@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Notes from './pages/Notes';
 import CreateNote from './pages/CreateNote';
 import EditNote from "./pages/EditNote";
-import dummyNotes from './dummy_notes';
+// import dummyNotes from './dummy_notes';
 import Nav from "./components/nav/Nav"
 import DeletedNotes from "./components/DeletedNotes";
 import ArchivedNotes from "./components/ArchivedNotes";
