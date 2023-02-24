@@ -24,7 +24,7 @@ const App = () => {
     await api.get('/')
     .then(res => {
       setNotes(res.data);
-      return res.data;
+      //return res.data;
       // console.log(res.data);
     })
     .catch( error => {
