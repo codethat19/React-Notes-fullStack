@@ -1,0 +1,13 @@
+#Node Modules
+client/node_modules
+server/node_modules
+
+#Environment Variables
+client/.env
+server/.env
+
+#Git Ignore
+client/.gitignore
+server/.gitignore
+
+client.zip
