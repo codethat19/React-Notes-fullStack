@@ -8,7 +8,7 @@ import {GrClose} from 'react-icons/gr';
 import {AiFillPlusCircle} from 'react-icons/ai';
 import api from "./../components/axios";
 
-const Notes = ({notes, setNotes}) => {
+const Notes = ({notes, setNotes, viewNotes}) => {
 
     // async function viewNotes () {
     //     await api.get('/view')
@@ -21,9 +21,9 @@ const Notes = ({notes, setNotes}) => {
     //     });
     // }
 
-    // useEffect( () => {
-    //     viewNotes();
-    // },[]);
+    useEffect( () => {
+        viewNotes();
+    },[]);
 
 //   console.log(notes.length);
   const [showSearch, setShowSearch] = useState(false);
