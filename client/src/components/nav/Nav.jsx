@@ -3,7 +3,7 @@ import "./nav.css";
 import {AiOutlineFileAdd, AiOutlineDelete, AiOutlineHome} from "react-icons/ai"
 import { useState } from 'react';
 import { BiArchive} from 'react-icons/bi';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 
 const Nav = () => {
 //   const [activeNav, setActiveNav] = useState("/");
@@ -18,19 +18,39 @@ const Nav = () => {
     activeNav = "deleted";
    }
   
+  // return (
+  //    <nav>
+
+  //      <a href="/" className={activeNav === "/" ? "active" : ""} ><AiOutlineHome /></a>
+      
+  //     <a href="/create-note" className={activeNav === "create-note" ? "active" : ""}><AiOutlineFileAdd /></a>
+  //     <a href="/archived" className={activeNav === "archived" ? "active" : ""}><BiArchive /></a>
+  //     <a href="/deletedNotes" className={activeNav === "deleted" ? "active" : ""}><AiOutlineDelete /></a>
+
+  //   </nav> 
+  // )
   return (
-     <nav>
+    <>
+    <nav>
 
-       <a href="/" className={activeNav === "/" ? "active" : ""} ><AiOutlineHome /></a>
-      {/* // <Link to='/create-note' className={activeNav === "create-note" ? "active" : ""}>
-      //   <AiOutlineFileAdd /> 
-      // </Link> */}
-      <a href="/create-note" className={activeNav === "create-note" ? "active" : ""}><AiOutlineFileAdd /></a>
-      <a href="/archived" className={activeNav === "archived" ? "active" : ""}><BiArchive /></a>
-      <a href="/deletedNotes" className={activeNav === "deleted" ? "active" : ""}><AiOutlineDelete /></a>
+      <Link to='/' className={activeNav === "/" ? "active" : ""}>
+        <AiOutlineHome /> 
+       </Link>
+      <Link to='/create-note' className={activeNav === "create-note" ? "active" : ""}>
+        <AiOutlineFileAdd /> 
+      </Link> 
+      <Link to='/archived' className={activeNav === "archived" ? "active" : ""}>
+        <BiArchive /> 
+      </Link> 
+      <Link to='/deletedNotes' className={activeNav === "deleted" ? "active" : ""}>
+        <AiOutlineDelete /> 
+      </Link>  
 
-    </nav> 
-  )
+   </nav> 
+   {/* <Outlet /> */}
+   </>
+ )
+    
 }
 
 export default Nav;
