@@ -22,7 +22,7 @@ const Notes = ({notes, setNotes, viewNotes}) => {
     // }
 
     useEffect( () => {
-        viewNotes();
+        setNotes(viewNotes());
     },[]);
 
 //   console.log(notes.length);
