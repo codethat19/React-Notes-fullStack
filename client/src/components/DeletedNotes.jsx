@@ -7,7 +7,7 @@ const DeletedNotes = (props) => {
   async function viewDeletedNotes () {
     await api.get('/deletedNotes')
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         props.setNotes(res.data);
       })
       .catch( error => {

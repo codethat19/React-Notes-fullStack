@@ -18,7 +18,7 @@ const ArchivedNotes = (props) => {
     viewArchivedNotes();
   }, []);
 
-  console.log(props.notes);
+  // console.log(props.notes);
   return (
     <>
     <header className="notes__header">
