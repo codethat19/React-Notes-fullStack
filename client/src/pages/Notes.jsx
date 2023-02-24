@@ -8,7 +8,7 @@ import {GrClose} from 'react-icons/gr';
 import {AiFillPlusCircle} from 'react-icons/ai';
 import api from "./../components/axios";
 
-const Notes = ({notes, setNotes, viewNotes}) => {
+const Notes = ({notes, setNotes}) => {
 
     // async function viewNotes () {
     //     await api.get('/view')
@@ -20,12 +20,31 @@ const Notes = ({notes, setNotes, viewNotes}) => {
     //       console.log(error);
     //     });
     // }
+    const viewNotes = async () => {
+        // console.log("View notes called")
+        // const flag = JSON.stringify( setFlag );
+        //console.log();
+        //setNoteFlag();
+        await api.get('/')
+        .then(res => {
+          setNotes(res.data);
+          //return res.data;
+          // console.log(res.data);
+        })
+        .catch( error => {
+          console.log(error);
+        });
+      };
+      useEffect( () => {
+        viewNotes();
+        // console.log(notes);
+      }, []);
+    
 
-
-    if (!notes.length) {
-        let fetchedNotes = viewNotes();
-        setNotes(fetchedNotes);
-    }
+    // if (!notes.length) {
+    //     let fetchedNotes = viewNotes();
+    //     setNotes(fetchedNotes);
+    // }
 
 
 //   console.log(notes.length);

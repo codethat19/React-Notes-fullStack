@@ -74,7 +74,7 @@ const App = () => {
       <Nav />
         <Routes>
         
-            <Route path="/"  element={<><Notes notes={notes} viewNotes={viewNotes} setNotes={setNotes}/></>}/>
+            <Route path="/"  element={<><Notes notes={notes} setNotes={setNotes}/></>}/>
             <Route path="/create-note"  element={<><CreateNote viewNotes={viewNotes} setNotes={setNotes}/></>}/>
             <Route path="/edit-note/:id"  element={<><EditNote notes={notes} viewNotes={viewNotes} setNotes={setNotes}/></>}/>
             <Route path="/deletedNotes" element={<><DeletedNotes notes={notes} setNotes={setNotes}/></>} />
