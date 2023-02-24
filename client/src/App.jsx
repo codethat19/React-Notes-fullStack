@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Notes from './pages/Notes';
 import CreateNote from './pages/CreateNote';
 import EditNote from "./pages/EditNote";
@@ -55,13 +55,19 @@ const App = () => {
         </header>
         <p className='empty__notes'>No {activeNav.substring(0, activeNav.indexOf(' '))} notes found</p>
         <Nav />
+        
       </main>
     );
   }
   return (
     <main id="app">
       <BrowserRouter>
+      <Link to='/create-note' >
+        ABCDEF
+          </Link>
+      {/* <Nav /> */}
         <Routes>
+        
             <Route path="/"  element={<><Nav /><Notes notes={notes} setNotes={setNotes}/></>}/>
             <Route path="/create-note"  element={<><Nav /><CreateNote viewNotes={viewNotes} setNotes={setNotes}/></>}/>
             <Route path="/edit-note/:id"  element={<><Nav /><EditNote notes={notes} viewNotes={viewNotes} setNotes={setNotes}/></>}/>

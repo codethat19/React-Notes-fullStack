@@ -3,7 +3,7 @@ import "./nav.css";
 import {AiOutlineFileAdd, AiOutlineDelete, AiOutlineHome} from "react-icons/ai"
 import { useState } from 'react';
 import { BiArchive} from 'react-icons/bi';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const Nav = () => {
 //   const [activeNav, setActiveNav] = useState("/");
@@ -19,15 +19,17 @@ const Nav = () => {
    }
   
   return (
-    <nav>
-      <a href="/" className={activeNav === "/" ? "active" : ""} ><AiOutlineHome /></a>
-      <Link to={'/create-note'} className={activeNav === "create-note" ? "active" : ""}>
-        <AiOutlineFileAdd /> 
-      </Link>
-      {/* <a href="/create-note" className={activeNav === "create-note" ? "active" : ""}><AiOutlineFileAdd /></a> */}
+     <nav>
+
+       <a href="/" className={activeNav === "/" ? "active" : ""} ><AiOutlineHome /></a>
+      {/* // <Link to='/create-note' className={activeNav === "create-note" ? "active" : ""}>
+      //   <AiOutlineFileAdd /> 
+      // </Link> */}
+      <a href="/create-note" className={activeNav === "create-note" ? "active" : ""}><AiOutlineFileAdd /></a>
       <a href="/archived" className={activeNav === "archived" ? "active" : ""}><BiArchive /></a>
       <a href="/deletedNotes" className={activeNav === "deleted" ? "active" : ""}><AiOutlineDelete /></a>
-    </nav>
+
+    </nav> 
   )
 }
 
