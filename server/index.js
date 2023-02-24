@@ -171,7 +171,9 @@ app.post(("/permaDeleteNote/*"), (req, res) => {
     })
     res.redirect('/');
 });
-
+app.get('*', function (req, res) {
+    res.send('public/index.html')
+  })
 app.post('/*', (req, res) => {
     console.log("Wild card POST endpoint hit");
     res.send("Wild card POST endpoint hit");
