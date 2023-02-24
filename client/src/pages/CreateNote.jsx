@@ -3,32 +3,54 @@ import { Link, useNavigate } from 'react-router-dom'
 import {IoIosArrowBack} from 'react-icons/io';
 import {v4 as uuid} from 'uuid';
 import useCreateDate from '../components/useCreateDate';
+import api from "./../components/axios";
 
-const CreateNote = ({setNotes}) => {
+const CreateNote = ({setNotes, viewNotes}) => {
   const [title, setTitle] = useState('');
   const [details, setDetails] = useState('');
   const date = useCreateDate();
   const navigate = useNavigate();
   
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-    if (title && details) {
-      const colorId = Math.floor(Math.random() * 10);
+  //   if (title && details) {
+  //     const colorId = Math.floor(Math.random() * 10);
       
-      const note = { id: uuid(), title, details, date, colorId }
+  //     const note = { id: uuid(), title, details, date, colorId }
 
-      //Add the new note to the Notes Array
-      setNotes(prevNotes => [note, ...prevNotes]);
-      //console.log(note);
+  //     //Add the new note to the Notes Array
+  //     setNotes(prevNotes => [note, ...prevNotes]);
+  //     //console.log(note);
 
-      //Redirect to home
-      navigate('/');
-    }
+  //     //Redirect to home
+  //     navigate('/');
+  //   }
 
     
+  // }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if(title && details) {
+      const colorId = Math.floor(Math.random() * 10);
+      const note = { title, details, colorId };
+
+      // const newNote = JSON.stringify( note );
+        await api.post('/create-note', note)
+        .then(response => {
+          setNotes(viewNotes());
+          navigate('/');
+        })
+        .catch( error => {
+          console.log(error);
+        });
+    } else {
+      // api.get('/');
+      navigate('/');
+    }
   }
+
 
   return (
     <section>

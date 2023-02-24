@@ -206,7 +206,9 @@ h2 {
     font-size: 2rem;
 }
 
-
+textarea {
+    resize: none;
+}
 /* MEDIA QUERIES FOR PHONES */
 @media screen and (max-width: 600px) {
     #app {
