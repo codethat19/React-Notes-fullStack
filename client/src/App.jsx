@@ -67,6 +67,7 @@ const App = () => {
             <Route path="/edit-note/:id"  element={<><Nav /><EditNote notes={notes} viewNotes={viewNotes} setNotes={setNotes}/></>}/>
             <Route path="/deletedNotes" element={<><Nav /><DeletedNotes notes={notes} setNotes={setNotes}/></>} />
             <Route path="/archived" element={<><Nav /><ArchivedNotes notes={notes} setNotes={setNotes}/></>} />
+            <Route path="*"  element={<><Nav /><Notes notes={notes} setNotes={setNotes}/></>}/>
         </Routes>
       </BrowserRouter>
     </main>
