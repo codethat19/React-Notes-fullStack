@@ -16,6 +16,7 @@ const EditNote = ({notes, setNotes, viewNotes}) => {
   let ArchiveButton = <></>;
   let DeleteButton = <></>;
   let RecoverDeleteButton = <></>;
+  let backLink = "/";
 
   if (note.flag === 1 || note.flag === 0) {
     ArchiveButton = <button onClick={handleArchive} className="btn"><RiInboxArchiveLine /></button>
@@ -29,7 +30,9 @@ const EditNote = ({notes, setNotes, viewNotes}) => {
     RecoverDeleteButton = <button onClick={handleRecover} className="btn"><FaTrashRestoreAlt /></button>;
     DeleteButton = <button onClick={handlePermaDelete} className="btn danger"><RiDeleteBin6Line /></button>;
   }
-
+  if (note.flag === 1) backLink = "/";
+  if (note.flag === 0) backLink = "/deletedNotes";
+  if (note.flag === 2) backLink = "/archived";
   //Using useState to manage Note's fields
   const [title, setTitle] = useState(note.title);
   const [details, setDetails] = useState(note.details);
@@ -46,13 +49,24 @@ const EditNote = ({notes, setNotes, viewNotes}) => {
       api.post('/update/', {newNote}, {params: {id: id}})
       .then(response => {      
         setNotes(viewNotes());
+        navigate('/');
+        // console.log(backLink);
         
       })
       .catch(error => {
         console.log(error);
       })
-    } 
-    navigate('/');
+    }
+    // if (note.flag === 2) {
+    //   // console.log(note.flag);
+    //   navigate('/archived');
+    // } else if (note.flag === 0) {
+    //   navigate('/deletedNotes');
+    // } else {
+    //   navigate('/');
+    // }
+    //
+    
   }
 
   async function handleDelete() {
@@ -109,7 +123,7 @@ const EditNote = ({notes, setNotes, viewNotes}) => {
   return (
     <section>
       <header className="create-note__header">
-        <Link to="/" className='btn'><IoIosArrowBack /></Link>
+        <Link to={backLink} className='btn'><IoIosArrowBack /></Link>
         <button onClick={handleSubmit} className="btn lg primary">Save</button>
         {ArchiveButton}
         {RecoverDeleteButton}
