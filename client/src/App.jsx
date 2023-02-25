@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import Notes from './pages/Notes';
 import CreateNote from './pages/CreateNote';
 import EditNote from "./pages/EditNote";
@@ -14,6 +14,9 @@ import { useState } from 'react';
 
 const App = () => {
   const [notes, setNotes] = useState([]);
+  const [first, setFirst] = useState(1);
+  // const navigate = useNavigate();
+  
   // const [notes, setNotes] = useState(JSON.parse(localStorage.getItem('notes')) || []);
   // console.log(notes);
   const viewNotes = async () => {
@@ -24,17 +27,29 @@ const App = () => {
     await api.get('/')
     .then(res => {
       setNotes(res.data);
+      // navigate('/');
       //return res.data;
       // console.log(res.data);
+      // notes= res.data;
     })
     .catch( error => {
       console.log(error);
     });
   };
-  useEffect( () => {
-    viewNotes();
-    // console.log(notes);
-  }, []);
+  // const viewNotes = () => {
+  //   api.get('/')
+  //   .then(res => setNotes(res.data))
+  //   .catch(err => console.log(err))
+  // }
+  // viewNotes();
+
+    useEffect( () => {
+      if (first) viewNotes();
+      setFirst(0);
+      // console.log(notes);
+    }, []);
+
+  
 
   //NAV Component
 
@@ -46,6 +61,7 @@ const App = () => {
   // useEffect(() => {
   //   localStorage.setItem('notes', JSON.stringify(notes))
   // }, [notes]);
+  // console.log("App called");
   // console.log(notes);
   
   if (!notes.length && window.location.pathname !== "/create-note") {
@@ -74,12 +90,12 @@ const App = () => {
       <Nav />
         <Routes>
         
-            <Route path="/"  element={<><Notes notes={notes} setNotes={setNotes}/></>}/>
+            <Route path="/"  element={<><Notes notes={notes} viewNotes={viewNotes} setNotes={setNotes}/></>}/>
             <Route path="/create-note"  element={<><CreateNote viewNotes={viewNotes} setNotes={setNotes}/></>}/>
             <Route path="/edit-note/:id"  element={<><EditNote notes={notes} viewNotes={viewNotes} setNotes={setNotes}/></>}/>
             <Route path="/deletedNotes" element={<><DeletedNotes notes={notes} setNotes={setNotes}/></>} />
             <Route path="/archived" element={<><ArchivedNotes notes={notes} setNotes={setNotes}/></>} />
-            <Route path="*"  element={<><Notes notes={notes} setNotes={setNotes}/></>}/>
+            {/* <Route path="*"  element={<><Notes notes={notes} setNotes={setNotes}/></>}/> */}
         </Routes>
       </BrowserRouter>
     </main>

@@ -33,7 +33,7 @@ const Nav = () => {
     <>
     <nav>
 
-      <Link to='/' className={activeNav === "/" ? "active" : ""}>
+      <Link to="/" className={activeNav === "/" ? "active" : ""}>
         <AiOutlineHome /> 
        </Link>
       <Link to='/create-note' className={activeNav === "create-note" ? "active" : ""}>

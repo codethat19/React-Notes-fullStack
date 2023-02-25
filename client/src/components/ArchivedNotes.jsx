@@ -4,7 +4,7 @@ import NoteItem from './NoteItem';
 
 const ArchivedNotes = (props) => {
 
-  const viewArchivedNotes = async (note) => {
+  async function getArchivedNotes () {
     await api.get('/archived')
     .then(res => {
       props.setNotes(res.data);
@@ -15,7 +15,7 @@ const ArchivedNotes = (props) => {
   };
   
   useEffect( () => {
-    viewArchivedNotes();
+    getArchivedNotes();
   }, []);
 
   // console.log(props.notes);

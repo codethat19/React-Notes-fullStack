@@ -46,7 +46,7 @@ const EditNote = ({notes, setNotes, viewNotes}) => {
       api.post('/update/', {newNote}, {params: {id: id}})
       .then(response => {      
         setNotes(viewNotes());
-        navigate('/');
+        
       })
       .catch(error => {
         console.log(error);

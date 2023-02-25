@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import {CiSearch} from 'react-icons/ci';
 import {BsPlusLg} from 'react-icons/bs';
 import dummyNotes from '../dummy_notes'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import NoteItem from '../components/NoteItem';
 import {GrClose} from 'react-icons/gr';
 import {AiFillPlusCircle} from 'react-icons/ai';
 import api from "./../components/axios";
 
-const Notes = ({notes, setNotes}) => {
+const Notes = (props) => {
 
+    const navigate = useNavigate();
     // async function viewNotes () {
     //     await api.get('/view')
     //     .then(res => {
@@ -20,25 +21,25 @@ const Notes = ({notes, setNotes}) => {
     //       console.log(error);
     //     });
     // }
-    const viewNotes = async () => {
-        // console.log("View notes called")
-        // const flag = JSON.stringify( setFlag );
-        //console.log();
-        //setNoteFlag();
+    const [filteredNotes, setFilteredNotes] = useState(props.notes);
+    async function getNotes () {
+
         await api.get('/')
         .then(res => {
-          setNotes(res.data);
-          //return res.data;
-          // console.log(res.data);
+            props.setNotes(res.data);
+            setFilteredNotes(res.data);
+            return res.data;
         })
         .catch( error => {
           console.log(error);
         });
       };
-      useEffect( () => {
-        viewNotes();
-        // console.log(notes);
-      }, []);
+    useEffect( () => {
+        getNotes();
+        // setFilteredNotes(props.notes);
+        // setFilteredNotes(getNotes());
+        // navigate('/');
+    }, []);
     
 
     // if (!notes.length) {
@@ -47,13 +48,14 @@ const Notes = ({notes, setNotes}) => {
     // }
 
 
-//   console.log(notes.length);
+//   console.log(props.notes);
   const [showSearch, setShowSearch] = useState(false);
   const [text, setText] = useState(''); 
-  const [filteredNotes, setFilteredNotes] = useState(notes);
-
+  
+//   console.log("Filtered")
+//   console.log(filteredNotes);
   const handleSearch = () => {
-    setFilteredNotes(notes.filter(note => {
+    setFilteredNotes(props.notes.filter(note => {
         if (note.title.toLowerCase().match(text.toLocaleLowerCase())) {
             return note;
         }
@@ -79,8 +81,10 @@ const Notes = ({notes, setNotes}) => {
                 
                 <NoteItem 
                     key={index}
+
                     note={note}
                     colorId={note.colorId}
+                    flag={note.flag}
                 />
                 )
             }

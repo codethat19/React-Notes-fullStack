@@ -7,22 +7,24 @@ const DeletedNotes = (props) => {
   async function viewDeletedNotes () {
     await api.get('/deletedNotes')
       .then(res => {
-        // console.log(res.data);
         props.setNotes(res.data);
       })
       .catch( error => {
         console.log(error);
       });
   }
+
   useEffect( () => {
     viewDeletedNotes();
   },[]);
 
+  // console.log(props.notes);
   return (
     <>
     <header className="notes__header">
       <h2>Deleted Notes</h2>
     </header>
+
     <div className="notes__container">
     {props.notes.map((noteItem, index) => {
       return (
@@ -35,10 +37,8 @@ const DeletedNotes = (props) => {
       />
       )
     })}
-    </div>
-      
-    </>
-    
+    </div>    
+    </>   
   )
 }
 
