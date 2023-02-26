@@ -11,6 +11,7 @@ import api from "./components/axios";
 import {AiOutlineFileAdd, AiOutlineDelete, AiOutlineHome} from "react-icons/ai"
 import { BiArchive} from 'react-icons/bi';
 import { useState } from 'react';
+import Example from './components/Loading';
 
 const App = () => {
   const [notes, setNotes] = useState([]);
@@ -79,7 +80,8 @@ const App = () => {
         <header className="notes__header">
           <h2>{activeNav}</h2>
         </header>
-        <p className='empty__notes'>No {activeNav.substring(0, activeNav.indexOf(' '))} notes found</p>
+        <p className='loading__message'><Example /></p>
+        <p className='empty__notes'>The server is powered by a lemon and two electrodes. <br />Please don't break your screen yet!</p>
         {/* <Nav /> */}
         
       </main>
