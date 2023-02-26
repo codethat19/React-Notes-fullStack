@@ -46,6 +46,7 @@ const App = () => {
     useEffect( () => {
       if (first) viewNotes();
       setFirst(0);
+      // first = 0;
       // console.log(notes);
     }, []);
 

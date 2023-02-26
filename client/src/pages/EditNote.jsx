@@ -65,7 +65,7 @@ const EditNote = ({notes, setNotes, viewNotes}) => {
     // } else {
     //   navigate('/');
     // }
-    //
+    
     
   }
 
@@ -83,7 +83,7 @@ const EditNote = ({notes, setNotes, viewNotes}) => {
     await api.post('/permaDeleteNote/', null, {params: {id: id}})
       .then(response => {
         setNotes(viewNotes());
-        navigate('/');
+        navigate('/deletedNotes');
       })
       .catch( error => {
         console.log(error);
@@ -103,7 +103,7 @@ const EditNote = ({notes, setNotes, viewNotes}) => {
     await api.post('/archive/', null, {params: {id: id}})
       .then(response => {
         setNotes(viewNotes());
-        navigate('/');
+        navigate('/archived');
       })
       .catch( error => {
         console.log(error);
