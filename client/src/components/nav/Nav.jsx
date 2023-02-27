@@ -33,17 +33,17 @@ const Nav = () => {
     <>
     <nav>
 
-      <Link to="/" className={activeNav === "/" ? "active" : ""}>
-        <AiOutlineHome /> 
+      <Link to="/" className={activeNav === "/" ? "active tooltip" : "tooltip"}>
+      <div className="tooltip__text">Home</div><AiOutlineHome /> 
        </Link>
-      <Link to='/create-note' className={activeNav === "create-note" ? "active" : ""}>
-        <AiOutlineFileAdd /> 
+      <Link to='/create-note' className={activeNav === "create-note" ? "active tooltip" : "tooltip"}>
+        <div className="tooltip__text">Create Note</div><AiOutlineFileAdd /> 
       </Link> 
-      <Link to='/archived' className={activeNav === "archived" ? "active" : ""}>
-        <BiArchive /> 
+      <Link to='/archived' className={activeNav === "archived" ? "active tooltip" : "tooltip"}>
+      <div className="tooltip__text">Archived Notes</div><BiArchive /> 
       </Link> 
-      <Link to='/deletedNotes' className={activeNav === "deleted" ? "active" : ""}>
-        <AiOutlineDelete /> 
+      <Link to='/deletedNotes' className={activeNav === "deleted" ? "active tooltip" : "tooltip"}>
+      <div className="tooltip__text">Deleted Notes</div><AiOutlineDelete /> 
       </Link>  
 
    </nav> 

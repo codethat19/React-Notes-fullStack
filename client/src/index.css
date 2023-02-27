@@ -185,7 +185,40 @@ h2 {
     padding-top: 0.2rem;
 }
 
-
+/* Hover Text */
+.tooltip__text {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    background-color: #3a3a3a;
+    color: #fefefe;
+    white-space: nowrap;
+    padding: 5px 10px;
+    border-radius: 7px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.tooltip__text::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    /* border: 10px solid; */
+    border-color: #3a3a3a #0000 #0000 #0000;
+}
+.tooltip__text::after {
+    content: "";
+}
+@media (hover: hover) {
+    .tooltip:hover .tooltip__text{
+        top: -80%;
+        visibility: visible;
+        opacity: 1;
+    }
+}
 
 /* CREATE NOTE & EDIT NOTE PAGE */
 .create-note__header {
