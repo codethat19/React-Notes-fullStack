@@ -5,6 +5,7 @@
     padding: 0;
     border: 0;
     outline: 0;
+    /* background: #20262E; */
     list-style: none;
     text-decoration: none;
     box-sizing: border-box;
@@ -21,6 +22,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     /* display: grid; */
+    /* background: #20262E; */
     place-items: center;
     color: var(--color-white);
     background: #ccc;
@@ -63,8 +65,10 @@ body {
     background: #20262E;
     height: 100vh;
     width: 100%;
+    /* max-width: 1200px; */
+    align-items: center;
     
-    padding: 2rem 3rem;
+    padding: 2rem 20rem;
     overflow-y: scroll;
     position: relative;
 }
@@ -276,5 +280,13 @@ textarea {
         font-size: 1.2rem;
         bottom: 6%;
         right: 2rem;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    #app {
+        width: 100vw;
+        height: 100vh;
+        padding: 2rem 1rem;
     }
 }
