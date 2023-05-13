@@ -26,6 +26,5 @@ const sanitizeInput = (input) => {
 module.exports = {
   validateNoteInput,
   sanitizeInput,
-
 }
   

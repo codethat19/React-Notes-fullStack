@@ -1,13 +1,14 @@
 #Node Modules
-client/node_modules
-server/node_modules
+node_modules
 
 #Environment Variables
-client/.env
-server/.env
+.env
 
 #Git Ignore
-client/.gitignore
-server/.gitignore
+.gitignore
 
+#Misc
 client.zip
+access.log
+error.log
+google_docs_credentials.json
