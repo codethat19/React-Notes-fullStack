@@ -2,7 +2,7 @@ const Note = require('../_database_/NoteModel');
 const validator = require('../_validators_/validator');
 
 const { google } = require('googleapis');
-const key = require('../google_docs_credentials.json');
+const key = require('./key');
 
 const auth = new google.auth.GoogleAuth({
     credentials: key,
