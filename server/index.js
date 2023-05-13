@@ -6,10 +6,7 @@ const controllers = require('./_controllers_/controllers.js');
 const app = express();
 const port = process.env.PORT || 4000;
 
-const corsOptions = {
-  origin: [process.env.ORIGIN],
-};
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
